@@ -1,5 +1,11 @@
 # @codibri/vendure-product-feed-plugin
 
+## 0.0.3
+
+### Patch Changes
+
+- dabe823: Export Google strategy
+
 ## 0.0.2
 
 ### Patch Changes
