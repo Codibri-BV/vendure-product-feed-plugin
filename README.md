@@ -1,6 +1,6 @@
 # Vendure product feed plugin
 
-This plugin generates an product feed of all products. This file can be exposed on an endpoint or upload via SFPT.
+This plugin generates an product feed of all products. This file can be exposed on an endpoint or uploaded to an SFPT server.
 
 When a product or variant is changed, the channel will be marked as changed.
 On the product overview page is a button to trigger the rebuild of the feed output.
@@ -35,6 +35,7 @@ plugins: [
   }),
   ProductFeedPlugin.init({
     assetUrlPrefix: "https://<vendure-server>/assets",
+    productUrl: (shopUrl, variant) => `${shopUrl}/product/${variant.product.slug}`,
     folder: "custom-product-feed",
     feedStrategy: {
       getFileName: (channel) => `google-${channel.code}`,
@@ -52,6 +53,7 @@ plugins: [
 | -------------- | -------- | --------------- | --------------------------------------------- |
 | assetUrlPrefix | yes      |                 | The url to access the Vendure server          |
 | feedStrategy   | yes      |                 | Feed strategy config                          |
+| productUrl     | no       |                 | Function that returns the url for a variant.  |
 | folder         | no       | product-catalog | The folder in assets where the feed is stored |
 
 ### Feed strategy config
@@ -77,16 +79,18 @@ Go to the channel config in the Admin UI and fill in the Shop URL, Output and th
 
 ## Strategies
 
+At the moment we only provide one output strategy. You can create your own by extending `ProductFeedStrategy`.
+
 ### Google product feed
 
 Build an XML to upload your products to Google Merchant Center.
 
 ## API endpoint
 
-When **URL** is selected in the channel config, the genrated XML is availble via the `/product-catalog`
+When **URL** is selected in the channel config, the genrated XML is availble via the `/feed` endpoint on the server.
 
 If you have multiple channel, you can provide the channel token in the header or as query parameter.
-`/product-catalog?token=<channelToken>`
+`/feed?token=<channelToken>`
 
 ## Building the feed
 
@@ -95,6 +99,7 @@ If you have multiple channel, you can provide the channel token in the header or
 On the products overview page in the Admin UI you will find a new button "Rebuild product catalog" to trigger the build of the product catalog feed of the current selected channel.
 
 An extra permission `ProductCatalogFeedRebuild` is added to control who can accees the manual trigger button on the products page.
+If no product feed is configured for the channel, the button will not be visible.
 
 ### Run automatically
 
