@@ -1,6 +1,6 @@
 # Vendure product feed plugin
 
-This plugin generates an product feed of all products. This file can be exposed on an endpoint or uploaded to an SFPT server.
+This plugin generates an product feed of all products. This file can be exposed on an endpoint or uploaded to an SFTP server.
 
 When a product or variant is changed, the channel will be marked as changed.
 On the product overview page is a button to trigger the rebuild of the feed output.
@@ -87,7 +87,7 @@ Build an XML to upload your products to Google Merchant Center.
 
 ## API endpoint
 
-When **URL** is selected in the channel config, the genrated XML is availble via the `/feed` endpoint on the server.
+When **URL** is selected in the channel config, the generated XML is available via the `/feed` endpoint on the server.
 
 If you have multiple channel, you can provide the channel token in the header or as query parameter.
 `/feed?token=<channelToken>`
