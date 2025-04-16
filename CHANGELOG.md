@@ -1,5 +1,12 @@
 # @codibri/vendure-product-feed-plugin
 
+## 0.0.4
+
+### Patch Changes
+
+- ad02f04: Add missing documentation
+- 4ab054c: Export ProductFeedStrategy type
+
 ## 0.0.3
 
 ### Patch Changes

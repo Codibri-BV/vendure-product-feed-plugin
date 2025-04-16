@@ -1,6 +1,6 @@
 {
   "name": "@codibri/vendure-product-feed-plugin",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Vendure plugin to create product feed",
   "author": "Toon Janssens <toon@codibri.be>",
   "repository": "https://github.com/Codibri-BV/vendure-product-feed-plugin",
