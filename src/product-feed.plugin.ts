@@ -194,15 +194,12 @@ export class ProductFeedPlugin {
     });
 
     this.eventBus.ofType(ProductFeedUpdatedEvent).subscribe((event) => {
-      switch (event.ctx.channel.customFields.productFeedOutput) {
-        case "url":
-        // return this.productFeedUploadService.uploadToUrl(event.ctx);
-        case "sftp":
-          return this.productFeedUploadService.uploadToSftp(
-            event.ctx.channel,
-            event.filePath,
-            event.fileName
-          );
+      if(event.ctx.channel.customFields.productFeedOutput === 'sftp') {
+        return this.productFeedUploadService.uploadToSftp(
+          event.ctx.channel,
+          event.filePath,
+          event.fileName
+        );
       }
     });
   }

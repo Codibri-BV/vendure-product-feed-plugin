@@ -86,7 +86,7 @@ export class ProductFeedBuilderService implements OnModuleInit {
     });
   }
 
-  async markChannelForRebuild(ctx: RequestContext) {
+  public async markChannelForRebuild(ctx: RequestContext) {
     const channel = ctx.channel;
 
     if (channel.customFields.productFeedOutput == "disabled") {
@@ -104,7 +104,7 @@ export class ProductFeedBuilderService implements OnModuleInit {
     }
   }
 
-  async buildAllFeeds() {
+  public async buildAllFeeds() {
     Logger.verbose("Checking channels to build", loggerCtx);
 
     const channels = await this.connection.rawConnection
@@ -117,7 +117,7 @@ export class ProductFeedBuilderService implements OnModuleInit {
     });
   }
 
-  addChannelRebuildToQueue(channelId: ID) {
+  public addChannelRebuildToQueue(channelId: ID) {
     return this.jobQueue.add({ channelId });
   }
 
